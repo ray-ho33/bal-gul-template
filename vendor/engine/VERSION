@@ -1,0 +1,8 @@
+version=0.9.1
+identity=insane-search
+repository=https://github.com/fivetaku/insane-search
+source_path=skills/insane-search/engine
+source_manifest=.claude-plugin/plugin.json
+provenance=local Claude plugin cache snapshot
+snapshot_policy=engine files copied byte-for-byte; excluded only __pycache__, upstream tests, and node_modules
+license_source=LICENSE

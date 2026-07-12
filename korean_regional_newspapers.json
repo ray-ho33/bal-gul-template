@@ -1,0 +1,363 @@
+{
+  "source": "https://namu.wiki/w/지역 신문",
+  "retrieved": "2026-07-11",
+  "regions": {
+    "강원권": [
+      {
+        "name": "강원일보",
+        "homepage": "http://www.kwnews.co.kr/",
+        "namu_wiki": "https://namu.wiki/w/%EA%B0%95%EC%9B%90%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "강원도민일보",
+        "homepage": "http://www.kado.net/",
+        "namu_wiki": "https://namu.wiki/w/%EA%B0%95%EC%9B%90%EB%8F%84%EB%AF%BC%EC%9D%BC%EB%B3%B4"
+      }
+    ],
+    "경상권": [
+      {
+        "name": "경남도민신문",
+        "homepage": "http://www.gndomin.com/",
+        "namu_wiki": "https://namu.wiki/w/%EA%B2%BD%EB%82%A8%EB%8F%84%EB%AF%BC%EC%8B%A0%EB%AC%B8"
+      },
+      {
+        "name": "경남도민일보",
+        "homepage": "http://www.idomin.com/",
+        "namu_wiki": "https://namu.wiki/w/%EA%B2%BD%EB%82%A8%EB%8F%84%EB%AF%BC%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "경남매일",
+        "homepage": "http://www.gnmaeil.com/",
+        "namu_wiki": "https://namu.wiki/w/%EA%B2%BD%EB%82%A8%EB%A7%A4%EC%9D%BC"
+      },
+      {
+        "name": "경남신문",
+        "homepage": "http://www.knnews.co.kr/",
+        "namu_wiki": "https://namu.wiki/w/%EA%B2%BD%EB%82%A8%EC%8B%A0%EB%AC%B8"
+      },
+      {
+        "name": "경남일보",
+        "homepage": "https://www.gnnews.co.kr/",
+        "namu_wiki": "https://namu.wiki/w/%EA%B2%BD%EB%82%A8%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "경북도민일보",
+        "homepage": "https://www.hidomin.com/",
+        "namu_wiki": "https://namu.wiki/w/%EA%B2%BD%EB%B6%81%EB%8F%84%EB%AF%BC%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "경북매일신문",
+        "homepage": "https://www.kbmaeil.com/",
+        "namu_wiki": "https://namu.wiki/w/%EA%B2%BD%EB%B6%81%EB%A7%A4%EC%9D%BC%EC%8B%A0%EB%AC%B8"
+      },
+      {
+        "name": "경북연합일보",
+        "homepage": "http://www.kbyn.co.kr/",
+        "namu_wiki": "https://namu.wiki/w/%EA%B2%BD%EB%B6%81%EC%97%B0%ED%95%A9%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "경북일보",
+        "homepage": "https://www.kyongbuk.co.kr/",
+        "namu_wiki": "https://namu.wiki/w/%EA%B2%BD%EB%B6%81%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "경상일보",
+        "homepage": "http://www.ksilbo.co.kr/",
+        "namu_wiki": "https://namu.wiki/w/%EA%B2%BD%EC%83%81%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "경산신문",
+        "homepage": "http://www.gsinews.com/",
+        "namu_wiki": "https://namu.wiki/w/%EA%B2%BD%EC%82%B0%EC%8B%A0%EB%AC%B8"
+      },
+      {
+        "name": "경안일보",
+        "homepage": "https://www.gailbo.com/",
+        "namu_wiki": "https://namu.wiki/w/%EA%B2%BD%EC%95%88%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "국제신문",
+        "homepage": "http://www.kookje.co.kr/",
+        "namu_wiki": "https://namu.wiki/w/%EA%B5%AD%EC%A0%9C%EC%8B%A0%EB%AC%B8"
+      },
+      {
+        "name": "뉴스경남",
+        "homepage": "https://www.newsgn.com/",
+        "namu_wiki": "https://namu.wiki/w/%EB%89%B4%EC%8A%A4%EA%B2%BD%EB%82%A8"
+      },
+      {
+        "name": "대구신문",
+        "homepage": "https://www.idaegu.co.kr/",
+        "namu_wiki": "https://namu.wiki/w/%EB%8C%80%EA%B5%AC%EC%8B%A0%EB%AC%B8"
+      },
+      {
+        "name": "대구일보",
+        "homepage": "http://www.idaegu.com/",
+        "namu_wiki": "https://namu.wiki/w/%EB%8C%80%EA%B5%AC%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "매일신문",
+        "homepage": "http://www.imaeil.com/",
+        "namu_wiki": "https://namu.wiki/w/%EB%A7%A4%EC%9D%BC%EC%8B%A0%EB%AC%B8"
+      },
+      {
+        "name": "부산일보",
+        "homepage": "http://www.busan.com/",
+        "namu_wiki": "https://namu.wiki/w/%EB%B6%80%EC%82%B0%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "안동데일리",
+        "homepage": "http://www.andongdaily.com/",
+        "namu_wiki": "https://namu.wiki/w/%EC%95%88%EB%8F%99%EB%8D%B0%EC%9D%BC%EB%A6%AC"
+      },
+      {
+        "name": "영남일보",
+        "homepage": "http://www.yeongnam.com/",
+        "namu_wiki": "https://namu.wiki/w/%EC%98%81%EB%82%A8%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "울산광역매일",
+        "homepage": "https://www.kyilbo.com/",
+        "namu_wiki": "https://namu.wiki/w/%EC%9A%B8%EC%82%B0%EA%B4%91%EC%97%AD%EB%A7%A4%EC%9D%BC"
+      },
+      {
+        "name": "울산매일신문",
+        "homepage": "http://www.iusm.co.kr/",
+        "namu_wiki": "https://namu.wiki/w/%EC%9A%B8%EC%82%B0%EB%A7%A4%EC%9D%BC%EC%8B%A0%EB%AC%B8"
+      },
+      {
+        "name": "울산신문",
+        "homepage": "https://www.ulsanpress.net/",
+        "namu_wiki": "https://namu.wiki/w/%EC%9A%B8%EC%82%B0%EC%8B%A0%EB%AC%B8"
+      },
+      {
+        "name": "울산저널",
+        "homepage": "https://www.usjournal.kr/",
+        "namu_wiki": "https://namu.wiki/w/%EC%9A%B8%EC%82%B0%EC%A0%80%EB%84%90"
+      },
+      {
+        "name": "울산제일일보",
+        "homepage": "http://www.ujeil.com/",
+        "namu_wiki": "https://namu.wiki/w/%EC%9A%B8%EC%82%B0%EC%A0%9C%EC%9D%BC%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "창원일보",
+        "homepage": "https://www.changwonilbo.com/",
+        "namu_wiki": "https://namu.wiki/w/%EC%B0%BD%EC%9B%90%EC%9D%BC%EB%B3%B4"
+      }
+    ],
+    "수도권": [
+      {
+        "name": "고양신문",
+        "homepage": "http://www.mygoyang.com/",
+        "namu_wiki": "https://namu.wiki/w/%EA%B3%A0%EC%96%91%EC%8B%A0%EB%AC%B8"
+      },
+      {
+        "name": "경기신문",
+        "homepage": "https://www.kgnews.co.kr/",
+        "namu_wiki": "https://namu.wiki/w/%EA%B2%BD%EA%B8%B0%EC%8B%A0%EB%AC%B8"
+      },
+      {
+        "name": "경기일보",
+        "homepage": "https://www.kyeonggi.com/",
+        "namu_wiki": "https://namu.wiki/w/%EA%B2%BD%EA%B8%B0%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "경기도민일보",
+        "homepage": "http://www.kgdm.co.kr/",
+        "namu_wiki": "https://namu.wiki/w/%EA%B2%BD%EA%B8%B0%EB%8F%84%EB%AF%BC%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "경인일보",
+        "homepage": "http://kyeongin.com/",
+        "namu_wiki": "https://namu.wiki/w/%EA%B2%BD%EC%9D%B8%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "기호일보",
+        "homepage": "https://www.kihoilbo.co.kr/",
+        "namu_wiki": "https://namu.wiki/w/%EA%B8%B0%ED%98%B8%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "분당신문",
+        "homepage": "https://www.bundangnews.co.kr/",
+        "namu_wiki": "https://namu.wiki/w/%EB%B6%84%EB%8B%B9%EC%8B%A0%EB%AC%B8"
+      },
+      {
+        "name": "인천일보",
+        "homepage": "https://www.incheonilbo.com/",
+        "namu_wiki": "https://namu.wiki/w/%EC%9D%B8%EC%B2%9C%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "인천투데이",
+        "homepage": "https://www.incheontoday.com/",
+        "namu_wiki": "https://namu.wiki/w/%EC%9D%B8%EC%B2%9C%ED%88%AC%EB%8D%B0%EC%9D%B4"
+      },
+      {
+        "name": "중부일보",
+        "homepage": "http://www.joongboo.com/",
+        "namu_wiki": "https://namu.wiki/w/%EC%A4%91%EB%B6%80%EC%9D%BC%EB%B3%B4"
+      }
+    ],
+    "전라권": [
+      {
+        "name": "광남일보",
+        "homepage": "http://www.gwangnam.co.kr/",
+        "namu_wiki": "https://namu.wiki/w/%EA%B4%91%EB%82%A8%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "광주일보",
+        "homepage": "http://www.kwangju.co.kr/",
+        "namu_wiki": "https://namu.wiki/w/%EA%B4%91%EC%A3%BC%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "광주매일신문",
+        "homepage": "http://www.kjdaily.com/",
+        "namu_wiki": "https://namu.wiki/w/%EA%B4%91%EC%A3%BC%EB%A7%A4%EC%9D%BC%EC%8B%A0%EB%AC%B8"
+      },
+      {
+        "name": "남도일보",
+        "homepage": "http://www.namdonews.com/",
+        "namu_wiki": "https://namu.wiki/w/%EB%82%A8%EB%8F%84%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "드림투데이",
+        "homepage": "http://www.gjdream.com/",
+        "namu_wiki": "https://namu.wiki/w/%EB%93%9C%EB%A6%BC%ED%88%AC%EB%8D%B0%EC%9D%B4"
+      },
+      {
+        "name": "무등일보",
+        "homepage": "http://www.mdilbo.com/",
+        "namu_wiki": "https://namu.wiki/w/%EB%AC%B4%EB%93%B1%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "새전북신문",
+        "homepage": "https://www.sjbnews.com/",
+        "namu_wiki": "https://namu.wiki/w/%EC%83%88%EC%A0%84%EB%B6%81%EC%8B%A0%EB%AC%B8"
+      },
+      {
+        "name": "전남매일",
+        "homepage": "http://www.jndn.com/",
+        "namu_wiki": "https://namu.wiki/w/%EC%A0%84%EB%82%A8%EB%A7%A4%EC%9D%BC"
+      },
+      {
+        "name": "전남일보",
+        "homepage": "https://www.jnilbo.com/",
+        "namu_wiki": "https://namu.wiki/w/%EC%A0%84%EB%82%A8%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "전라일보",
+        "homepage": "https://www.jeollailbo.com/",
+        "namu_wiki": "https://namu.wiki/w/%EC%A0%84%EB%9D%BC%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "전민일보",
+        "homepage": "https://www.jeonmin.co.kr/",
+        "namu_wiki": "https://namu.wiki/w/%EC%A0%84%EB%AF%BC%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "전북도민일보",
+        "homepage": "https://www.domin.co.kr/",
+        "namu_wiki": "https://namu.wiki/w/%EC%A0%84%EB%B6%81%EB%8F%84%EB%AF%BC%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "전북일보",
+        "homepage": "https://www.jjan.kr/",
+        "namu_wiki": "https://namu.wiki/w/%EC%A0%84%EB%B6%81%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "전북제일신문",
+        "homepage": "https://www.jbjnews.com/",
+        "namu_wiki": "https://namu.wiki/w/%EC%A0%84%EB%B6%81%EC%A0%9C%EC%9D%BC%EC%8B%A0%EB%AC%B8"
+      },
+      {
+        "name": "호남매일신문",
+        "homepage": "http://www.honammaeil.com/",
+        "namu_wiki": "https://namu.wiki/w/%ED%98%B8%EB%82%A8%EB%A7%A4%EC%9D%BC%EC%8B%A0%EB%AC%B8"
+      }
+    ],
+    "제주권": [
+      {
+        "name": "삼다일보",
+        "homepage": "https://www.samdailbo.com/",
+        "namu_wiki": "https://namu.wiki/w/%EC%82%BC%EB%8B%A4%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "제민일보",
+        "homepage": "https://www.jemin.com/",
+        "namu_wiki": "https://namu.wiki/w/%EC%A0%9C%EB%AF%BC%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "제주도민일보",
+        "homepage": "https://www.jejudomin.co.kr/",
+        "namu_wiki": "https://namu.wiki/w/%EC%A0%9C%EC%A3%BC%EB%8F%84%EB%AF%BC%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "제주일보",
+        "homepage": "http://www.jejunews.com/",
+        "namu_wiki": "https://namu.wiki/w/%EC%A0%9C%EC%A3%BC%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "한라일보",
+        "homepage": "https://www.ihalla.com/",
+        "namu_wiki": "https://namu.wiki/w/%ED%95%9C%EB%9D%BC%EC%9D%BC%EB%B3%B4"
+      }
+    ],
+    "충청권": [
+      {
+        "name": "굿모닝충청",
+        "homepage": "https://www.goodmorningcc.com/",
+        "namu_wiki": "https://namu.wiki/w/%EA%B5%BF%EB%AA%A8%EB%8B%9D%EC%B6%A9%EC%B2%AD"
+      },
+      {
+        "name": "금강일보",
+        "homepage": "https://www.ggilbo.com/",
+        "namu_wiki": "https://namu.wiki/w/%EA%B8%88%EA%B0%95%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "동양일보",
+        "homepage": "http://www.dynews.co.kr/",
+        "namu_wiki": "https://namu.wiki/w/%EB%8F%99%EC%96%91%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "대전일보",
+        "homepage": "http://www.daejonilbo.com/",
+        "namu_wiki": "https://namu.wiki/w/%EB%8C%80%EC%A0%84%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "중도일보",
+        "homepage": "http://www.joongdo.co.kr/",
+        "namu_wiki": "https://namu.wiki/w/%EC%A4%91%EB%8F%84%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "중부매일신문",
+        "homepage": "https://www.jbnews.com/",
+        "namu_wiki": "https://namu.wiki/w/%EC%A4%91%EB%B6%80%EB%A7%A4%EC%9D%BC%EC%8B%A0%EB%AC%B8"
+      },
+      {
+        "name": "충남일보",
+        "homepage": "http://www.chungnamilbo.co.kr/",
+        "namu_wiki": "https://namu.wiki/w/%EC%B6%A9%EB%82%A8%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "충북일보",
+        "homepage": "https://www.inews365.com/",
+        "namu_wiki": "https://namu.wiki/w/%EC%B6%A9%EB%B6%81%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "충청매일",
+        "homepage": "https://www.ccdn.co.kr/",
+        "namu_wiki": "https://namu.wiki/w/%EC%B6%A9%EC%B2%AD%EB%A7%A4%EC%9D%BC"
+      },
+      {
+        "name": "충청일보",
+        "homepage": "https://www.ccdailynews.com/",
+        "namu_wiki": "https://namu.wiki/w/%EC%B6%A9%EC%B2%AD%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "충청투데이",
+        "homepage": "https://www.cctoday.co.kr/",
+        "namu_wiki": "https://namu.wiki/w/%EC%B6%A9%EC%B2%AD%ED%88%AC%EB%8D%B0%EC%9D%B4"
+      }
+    ]
+  }
+}

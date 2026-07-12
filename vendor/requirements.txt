@@ -1,0 +1,5 @@
+requests
+beautifulsoup4
+curl_cffi>=0.15.0
+PyYAML
+pydantic>=2.12,<3
