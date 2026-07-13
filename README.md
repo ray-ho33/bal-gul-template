@@ -3,7 +3,7 @@
 전국 69개 지역신문에서 최근 기사를 모으고, 민간 주체와 정부·공공기관 사이의 실제 갈등을 매일 Markdown·HTML 리포트로 정리하는 파일 기반 자동화입니다.
 
 - 기사 수집: GitHub Actions가 매일 06:00 KST에 실행
-- 판별·리포트: ChatGPT 예약 작업이 매일 06:20 KST에 실행
+- 판별·리포트: ChatGPT 예약 작업이 매일 07:30 KST에 실행
 - 저장: 내 GitHub 저장소에 JSON, Markdown, HTML 파일로 누적
 - 별도 서버·DB·외부 AI API key: 없음
 
@@ -30,7 +30,7 @@
 
 ## 전체 워크플로우
 
-두 단계는 `data/candidates-YYYY-MM-DD.json`을 인계 파일로 사용합니다. 06:20 예약 작업은 당일 후보 파일과 06:00 Actions 성공 여부를 독립적으로 검증한 뒤에만 리포트를 만듭니다.
+두 단계는 `data/candidates-YYYY-MM-DD.json`을 인계 파일로 사용합니다. 07:30 예약 작업은 당일 후보 파일과 06:00 Actions 성공 여부를 독립적으로 검증한 뒤에만 리포트를 만듭니다. GitHub Actions 예약 실행이 지연될 수 있으므로 수집 목표 시각과 90분 간격을 둡니다.
 
 ```mermaid
 flowchart TD
@@ -43,7 +43,7 @@ flowchart TD
     G -- 아니요 --> H["수집 실패로 기록<br/>후보 파일은 참고용으로 남김"]
     G -- 예 --> I["수집 성공"]
 
-    J["2단계: AI 판별 담당<br/>매일 아침 6시 20분 자동 실행"] --> K{"오늘 후보 파일이<br/>제대로 준비됐나?"}
+    J["2단계: AI 판별 담당<br/>매일 아침 7시 30분 자동 실행"] --> K{"오늘 후보 파일이<br/>제대로 준비됐나?"}
     I --> K
     H --> K
     K -- 아니요 --> L["작업 중단<br/>리포트를 만들지 않음"]
@@ -58,7 +58,7 @@ flowchart TD
 | 시각 | 실행 주체 | 입력 | 출력 | 성공 기준 |
 |---|---|---|---|---|
 | 06:00 KST | GitHub Actions | 신문사 목록과 수집 코드 | `data/candidates-YYYY-MM-DD.json` | 수집 성공 신문사 55곳 이상 |
-| 06:20 KST | ChatGPT 예약 작업 | 당일 후보와 Actions 실행 이력 | `reports/YYYY-MM-DD.md`, `.html` | 준비 상태·최신성 검사 통과 |
+| 07:30 KST | ChatGPT 예약 작업 | 당일 후보와 Actions 실행 이력 | `reports/YYYY-MM-DD.md`, `.html` | 준비 상태·최신성 검사 통과 |
 
 ## 매일 생기는 파일
 
