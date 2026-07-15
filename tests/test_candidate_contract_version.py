@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 
 import pytest
@@ -26,8 +27,29 @@ def test_candidate_contract_version_is_required_and_exact() -> None:
         _ = CandidateFile.model_validate({"contract_version": "legacy-conflict-v1"})
 
 
-def test_reader_rejects_legacy_candidate_contract() -> None:
-    legacy_path = Path("data/candidates-2026-07-15.json")
+def test_reader_rejects_legacy_candidate_contract(tmp_path: Path) -> None:
+    legacy_path = tmp_path / "candidates-2026-07-12.json"
+    legacy_payload = {
+        "run_date": "2026-07-12",
+        "generated_at": "2026-07-12T06:00:00+09:00",
+        "workflow_run_url": None,
+        "collector_commit_sha": "a" * 40,
+        "candidates": [],
+        "failures": [
+            {"name": f"실패 신문 {index}", "stop_reason": "test"} for index in range(88)
+        ],
+        "stats": {
+            "sites_total": 88,
+            "sites_succeeded": 0,
+            "total": 0,
+            "candidates": 0,
+            "engine_used": 0,
+        },
+    }
+    _ = legacy_path.write_text(
+        json.dumps(legacy_payload, ensure_ascii=False),
+        encoding="utf-8",
+    )
 
     with pytest.raises(ValidationError, match="contract_version"):
         _ = read_candidate_file(legacy_path)
