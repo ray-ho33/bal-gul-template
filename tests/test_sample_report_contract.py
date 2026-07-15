@@ -27,7 +27,7 @@ def test_documented_source_counts_match_registry_contract() -> None:
 
     # When: each user-facing count is parsed from its structured location
     registry_total = len(registry)
-    diagram_match = re.search(r'A\["전국 (\d+)개 지역신문 목록"\]', readme)
+    diagram_match = re.search(r'A\["전국 (\d+)개 신문사 목록"\]', readme)
     assert diagram_match is not None
     diagram_total = int(diagram_match.group(1))
     markdown_total = _markdown_stat(markdown, "대상 신문사")
@@ -49,6 +49,11 @@ def test_documented_source_counts_match_registry_contract() -> None:
     assert markdown_succeeded + markdown_failures == registry_total
     assert html_stats["대상 신문사"] == registry_total
     assert html_stats["수집 성공"] + html_failures == registry_total
+    assert '<span class="result-count"><span class="figure">3</span>건</span>' in html
+    assert ".hero-verdict .result-count{white-space:nowrap}" in html
+    assert "word-break:keep-all" in html
+    assert '<span class="cohort-label">2030·청년</span>' in html
+    assert ".cohort-label{white-space:nowrap}" in html
 
 
 def _markdown_stat(markdown: str, label: str) -> int:

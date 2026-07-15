@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:,">
 <title>2026-07-12 2030·청년 고충 데일리 리포트</title>
 <!-- insane-design: theverge (2026-07-12) -->
 <style>
@@ -87,11 +88,15 @@ a{color:inherit}
   text-transform:uppercase;
 }
 .hero-verdict .figure{color:var(--mint)}
+.hero-verdict .result-count{white-space:nowrap}
+.cohort-label{white-space:nowrap}
 .hero-lead{
   margin:28px 0 0;
   max-width:34em;
   font:400 clamp(17px,2.2vw,21px)/1.6 var(--font-serif);
   letter-spacing:-.01em;
+  word-break:keep-all;
+  overflow-wrap:break-word;
 }
 .hero-lead b{
   font-weight:700;
@@ -306,11 +311,11 @@ footer{
     </nav>
     <div class="hero-main">
       <span class="kicker">Daily Report — 2026-07-12</span>
-      <h1 class="hero-verdict">고충 확인 <span class="figure">3</span>건</h1>
-      <p class="hero-lead">88개 지역신문 중 86곳에서 기사 737건을 수집하고 후보 51건을 판별해 <b>2030·청년 고충 기사 3건을 확인했습니다.</b> 지역 청년의 취업난, 사회초년생의 월세 부담, 고립 청년의 상담 지연 문제입니다. 경안일보와 새전북신문은 수집 시도 한도에 도달해 완료하지 못했습니다.</p>
+      <h1 class="hero-verdict">고충 확인 <span class="result-count"><span class="figure">3</span>건</span></h1>
+      <p class="hero-lead">88개 신문사 중 86곳에서 기사 737건을 수집하고 후보 51건을 판별해 <b><span class="cohort-label">2030·청년</span> 고충 기사 3건을 확인했습니다.</b> 지역 청년의 취업난, 사회초년생의 월세 부담, 고립 청년의 상담 지연 문제입니다. 경안일보와 새전북신문은 수집 시도 한도에 도달해 완료하지 못했습니다.</p>
     </div>
     <div class="hero-foot">
-      <span>88개 지역신문 · KST</span>
+      <span>88개 신문사 · KST</span>
     </div>
   </div>
 </header>
