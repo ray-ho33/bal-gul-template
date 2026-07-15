@@ -125,6 +125,7 @@ class _Harness:
         )
         generated = dependencies.generated_clock()
         return CandidateFile(
+            contract_version="youth-hardship-v1",
             run_date=request.run_date,
             generated_at=generated,
             workflow_run_url=request.workflow_run_url,

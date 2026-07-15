@@ -17,6 +17,11 @@
 2. `generated_at`이 timezone-aware ISO 8601로 파싱 가능하고, 미래가 아니며, KST 날짜가 `run_date`와 일치한다.
 3. `workflow_run_url`이 이 저장소의 Actions 실행을 가리키고, 그 실행의 conclusion이 정확히 `success`다.
 4. `stats.sites_succeeded >= 55`.
+5. 후보 JSON이 현재 수집 계약과 정확히 일치한다.
+   - `contract_version`이 정확히 `youth-hardship-v1`이다.
+   - `stats.sites_total == 88`이고, `stats.sites_succeeded + failures` 배열 길이가 88이다.
+   - `stats.candidates` = `candidates` 배열 길이이고, 각 후보의 `keyword_hits`에는 비어 있지 않은 문자열 배열인 `청년`과 `고충` 두 키만 있다.
+   - 필드가 없거나 추가 필드·과거 키가 있거나 현재 계약과 다르면 `NOT_READY`다.
 
 승인된 GitHub 연결로 후보 경로의 마지막 변경 커밋을 증명할 수 없거나 `workflow_run_url` 실행의 conclusion을 증명할 수 없으면 검증 실패다.
 
@@ -67,7 +72,7 @@ readiness 통과 시 `reports/YYYY-MM-DD.md`와 `reports/YYYY-MM-DD.html` 두 �
   - hero 요약은 결과 수치만 반복하지 말고 수집 성공 신문사 수, 수집 기사·판별 후보 규모, 양성 결과를 2~3문장으로 간략히 설명한다. 실패가 있으면 실패 수와 주요 원인도 포함하되 입력에 없는 사실은 추측하지 않는다. Markdown 리포트에도 같은 요약을 넣는다.
   - 통계 스트립은 원본 필드 `sites_total`, `sites_succeeded`, `total`, `candidates`, `engine_used`의 값을 모두 쓰되 두 리포트의 표시 라벨은 각각 `대상 신문사`, `수집 성공`, `수집 기사`, `판별 후보`, `대체 수집`처럼 쉽고 자연스러운 한국어로 표시한다.
   - 실패 목록은 원본 `name`과 `stop_reason`을 빠짐없이 반영하되 열 제목은 `신문사`, `실패 사유`로 표시한다. `stop_reason`의 기계용 영문 값은 그대로 노출하지 않고 뜻을 보존한 자연스러운 한국어로 풀어 쓴다(예: `budget` → `수집 시도 한도 도달`).
-  - 형태: 이미지·표·섹션 프레임은 radius 0, pill(kicker 등)만 radius 20px. 그림자 대신 1px 룰과 대비로 위계를 만든다. 모션·애니메이션 코드는 넣지 않는다. 768px 이하에서 통계 스트립은 2칸.
+  - 형태: 이미지·표·섹션 프레임은 radius 0, pill(kicker 등)만 radius 20px. 그림자 대신 1px 룰과 대비로 위계를 만든다. 모션·애니메이션 코드는 넣지 않는다. 헤드라인의 `N건`과 `2030·청년` 같은 계층 표현은 단어 중간에서 줄바꿈하지 않는다. 한국어 리드 문장은 `word-break: keep-all`을 적용한다. 768px 이하에서 통계 스트립은 2칸.
 - Provenance 블록(두 리포트 공통):
   - `run_date`와 정확한 입력 경로(`data/candidates-<target>.json`)
   - 전체 candidate source commit SHA와 blob SHA, `collector_commit_sha`

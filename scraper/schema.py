@@ -23,6 +23,7 @@ from typing_extensions import override
 from scraper.filtering import KeywordHits
 
 CollectionMethod: TypeAlias = Literal["requests", "engine"]
+CandidateContractVersion: TypeAlias = Literal["youth-hardship-v1"]
 NonBlankText: TypeAlias = Annotated[
     str,
     StringConstraints(min_length=1, pattern=r"\S"),
@@ -37,6 +38,7 @@ SiteCount: TypeAlias = Annotated[int, Field(ge=0, le=88)]
 _KST: Final = timezone(timedelta(hours=9))
 _SITE_TOTAL: Final = 88
 _READINESS_THRESHOLD: Final = 55
+CANDIDATE_CONTRACT_VERSION: Final[CandidateContractVersion] = "youth-hardship-v1"
 
 
 def _schema_error(
@@ -179,6 +181,7 @@ class CandidateFile(BaseModel):
         strict=True,
     )
 
+    contract_version: CandidateContractVersion
     run_date: date
     generated_at: AwareDatetime
     workflow_run_url: HttpUrlString | None

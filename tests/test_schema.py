@@ -20,6 +20,7 @@ KST: Final = timezone(timedelta(hours=9))
 RUN_DATE: Final = date(2026, 7, 12)
 GENERATED_AT: Final = datetime(2026, 7, 12, 6, 12, 34, tzinfo=KST)
 COLLECTOR_SHA: Final = "1a2b3c4d5e6f789012345678901234567890abcd"
+CONTRACT_VERSION: Final = "youth-hardship-v1"
 
 
 def _valid_hits() -> CandidateKeywordHits:
@@ -65,6 +66,7 @@ def _document(
         engine_used=4,
     )
     return CandidateFile(
+        contract_version=CONTRACT_VERSION,
         run_date=RUN_DATE,
         generated_at=GENERATED_AT,
         workflow_run_url="https://github.com/acme/bal-gul/actions/runs/123",
@@ -75,10 +77,6 @@ def _document(
     )
 
 
-def test_schema_production_surface_exists() -> None:
-    assert Path("scraper/schema.py").is_file()
-
-
 def test_exact_prd_json_shape_and_alias_round_trip() -> None:
     document = _document()
 
@@ -87,6 +85,7 @@ def test_exact_prd_json_shape_and_alias_round_trip() -> None:
 
     assert decoded == document
     assert tuple(document.model_dump(by_alias=True)) == (
+        "contract_version",
         "run_date",
         "generated_at",
         "workflow_run_url",
@@ -100,6 +99,7 @@ def test_exact_prd_json_shape_and_alias_round_trip() -> None:
     assert '"youth_terms"' not in encoded
     assert '"hardship_terms"' not in encoded
     assert "schema_version" not in encoded
+    assert f'"contract_version": "{CONTRACT_VERSION}"' in encoded
 
 
 def test_article_rejects_non_http_link_and_blank_required_text() -> None:
