@@ -79,39 +79,18 @@ def test_candidate_source_sha_tracks_path_history_not_default_head() -> None:
     )
 
 
-def test_classification_positive_definition_and_exclusions() -> None:
+def test_classification_output_field_contract() -> None:
     task = _task()
 
     _assert_all(
         task,
         (
-            "## 3. 판별 규칙",
-            "`title`과 `summary` 메타데이터만",
-            "명시적이고 현재 진행 중인 실제 갈등",
-            "민간 주체임을 확인",
-            "고유명사나 정확한 개인·단체명까지 특정할 필요는 없으며",
-            "구체적으로 식별 가능한 정부·공공기관",
-            "민간 성격 자체를 확인할 수 없거나 실제 갈등",
-            "정치인·정당 간 공방",
-            "기관 간 분쟁",
-            "스포츠·연예",
-            "일반 공지·정책 소개·단순 정책 논의",
-            "순수 범죄·사고·단속·처분 보도",
-            "개발, 환경, 행정처분, 노동, 복지, 기타",
-            "기사 링크",
-            "기사 제목",
-            "신문사",
-            "지역",
             "verdict: O",
-            "conflict_type",
-            "actors.민간",
-            "actors.기관",
-            "보수적인 2줄 요약",
-            "추측하거나 발명하지",
+            "issue_type",
+            "affected_group",
+            "difficulty",
         ),
     )
-    assert re.search(r"민간.*(주민|시민).*(학부모|상인|노동자|노조|업계)", task)
-    assert re.search(r"고유명사가 없다는 이유만으로 제외하지", task)
 
 
 def test_output_provenance_empty_report_and_stats_contract() -> None:
@@ -146,7 +125,6 @@ def test_output_provenance_empty_report_and_stats_contract() -> None:
             "`budget` → `수집 시도 한도 도달`",
             "양성이 0건",
             "후보가 0건",
-            "민관갈등 확정 기사 없음",
             "판별 후보 없음",
             "출처·통계·실패 목록",
         ),
@@ -168,7 +146,7 @@ def test_stale_input_idempotency_and_direct_commit_safety() -> None:
             "리포트 커밋을 만들지",
             "기본 브랜치 최신 HEAD",
             "두 리포트 파일을 한 개의 일반 직접 커밋",
-            "report: YYYY-MM-DD 민관갈등 데일리 리포트",
+            "report: YYYY-MM-DD 2030·청년 고충 데일리 리포트",
             "HEAD가 이동",
             "한 번만",
             "푸시 거부 직후",

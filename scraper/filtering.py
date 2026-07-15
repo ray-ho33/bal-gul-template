@@ -1,90 +1,75 @@
-"""Deterministic time and keyword filtering for collected article metadata."""
+"""Deterministic time and topic filtering for collected article metadata."""
 
-import re
 from dataclasses import dataclass
 from datetime import date, datetime, timedelta
 from email.utils import parsedate_to_datetime
 from typing import Final, TypeAlias
 
-CONFLICT_KEYWORDS: Final[tuple[str, ...]] = (
-    "갈등",
-    "반발",
-    "반대",
-    "항의",
-    "규탄",
-    "시위",
-    "집회",
-    "소송",
-    "행정심판",
-    "철회",
-    "논란",
-    "마찰",
-    "충돌",
-    "진정",
-    "탄원",
-    "민원",
+YOUTH_KEYWORDS: Final[tuple[str, ...]] = (
+    "청년",
+    "2030",
+    "20대",
+    "30대",
+    "20·30대",
+    "20~30대",
+    "20-30대",
+    "MZ세대",
+    "사회초년생",
+    "취업준비생",
+    "취준생",
+    "대학생",
 )
-AGENCY_KEYWORDS: Final[tuple[str, ...]] = (
-    "시청",
-    "도청",
-    "군청",
-    "구청",
-    "시장",
-    "도지사",
-    "정부",
-    "부처",
-    "지자체",
-    "교육청",
-    "경찰",
-    "공사",
-    "공단",
-    "LH",
-    "국토부",
-    "환경부",
+HARDSHIP_KEYWORDS: Final[tuple[str, ...]] = (
+    "고충",
+    "어렵",
+    "힘들",
+    "곤란",
+    "부담",
+    "불안",
+    "위기",
+    "피해",
+    "차별",
+    "고립",
+    "은둔",
+    "빈곤",
+    "생활고",
+    "실업",
+    "취업난",
+    "구직난",
+    "주거난",
+    "전세사기",
+    "월세",
+    "학자금",
+    "부채",
+    "빚",
+    "저임금",
+    "임금체불",
+    "과로",
+    "해고",
+    "번아웃",
+    "소진",
+    "스트레스",
+    "우울",
+    "자살",
+    "포기",
+    "막막",
 )
 
 _KST_OFFSET: Final = timedelta(hours=9)
 _RECENT_WINDOW: Final = timedelta(hours=24)
-_PLACE_AGENCY_PATTERN: Final = re.compile(
-    r"""
-    (?<![가-힣])
-    (?P<agency>[가-힣]{2,8}?(?:시|군|도))
-    (?=
-        (?:청)?
-        (?:에서는|에서도|으로는|로는|에도|에서|으로|까지|부터)?
-        (?:의|에|와|과|로|은|는|이|가|을|를|도|만|측)?
-        (?:[^가-힣]|$)
-    )
-    """,
-    re.VERBOSE,
-)
-_OBVIOUS_NON_PLACE_TOKENS: Final[frozenset[str]] = frozenset(
-    {
-        "반드시",
-        "보상제도",
-        "선호도",
-        "신뢰도",
-        "연합군",
-        "완성도",
-        "인지도",
-        "정확도",
-        "지원제도",
-        "활용도",
-    },
-)
 
 
 @dataclass(frozen=True, slots=True)
 class KeywordHits:
-    """Conflict and agency terms found in an article title and summary."""
+    """Youth and hardship terms found in an article title and summary."""
 
-    conflict_terms: tuple[str, ...]
-    agency_terms: tuple[str, ...]
+    youth_terms: tuple[str, ...]
+    hardship_terms: tuple[str, ...]
 
     @property
     def has_both_groups(self) -> bool:
         """Return whether at least one term from each keyword group matched."""
-        return bool(self.conflict_terms and self.agency_terms)
+        return bool(self.youth_terms and self.hardship_terms)
 
 
 @dataclass(frozen=True, slots=True)
@@ -100,22 +85,15 @@ PublicationTime: TypeAlias = datetime | CurrentDayPublication
 def find_keyword_hits(title: str, summary: str) -> KeywordHits:
     """Return all configured keyword hits from title and summary only."""
     searchable_text = f"{title}\n{summary}".casefold()
-    conflict_terms = tuple(
-        term for term in CONFLICT_KEYWORDS if term.casefold() in searchable_text
+    youth_terms = tuple(
+        term for term in YOUTH_KEYWORDS if term.casefold() in searchable_text
     )
-    agency_terms = tuple(
-        term for term in AGENCY_KEYWORDS if term.casefold() in searchable_text
-    )
-    place_agency_terms = tuple(
-        dict.fromkeys(
-            match.group("agency")
-            for match in _PLACE_AGENCY_PATTERN.finditer(searchable_text)
-            if match.group("agency") not in _OBVIOUS_NON_PLACE_TOKENS
-        ),
+    hardship_terms = tuple(
+        term for term in HARDSHIP_KEYWORDS if term.casefold() in searchable_text
     )
     return KeywordHits(
-        conflict_terms=conflict_terms,
-        agency_terms=agency_terms + place_agency_terms,
+        youth_terms=youth_terms,
+        hardship_terms=hardship_terms,
     )
 
 
@@ -154,7 +132,7 @@ def is_candidate(
     published_at: PublicationTime,
     run_anchor: datetime,
 ) -> bool:
-    """Return whether an article is recent and hits both keyword groups."""
+    """Return whether a recent article has both youth and hardship terms."""
     recent = is_recent(published_at, run_anchor=run_anchor)
     hits = find_keyword_hits(title, summary)
     return recent and hits.has_both_groups

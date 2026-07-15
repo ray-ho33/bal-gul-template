@@ -24,7 +24,7 @@ COLLECTOR_SHA: Final = "1a2b3c4d5e6f789012345678901234567890abcd"
 
 def _valid_hits() -> CandidateKeywordHits:
     return CandidateKeywordHits.from_keyword_hits(
-        KeywordHits(conflict_terms=("반발",), agency_terms=("군청",)),
+        KeywordHits(youth_terms=("청년",), hardship_terms=("주거난",)),
     )
 
 
@@ -32,9 +32,9 @@ def _valid_candidate() -> ArticleCandidate:
     return ArticleCandidate(
         newspaper_name="강원일보",
         region="강원권",
-        title="주민들, 군청 계획에 반발",
+        title="청년층, 주거난에 어려움",
         link="https://example.com/article/1",
-        summary="주민들이 재검토를 요구했다.",
+        summary="월세 부담이 커졌다고 호소했다.",
         published=datetime(2026, 7, 12, 5, 30, tzinfo=KST),
         method="requests",
         keyword_hits=_valid_hits(),
@@ -58,7 +58,7 @@ def _document(
         candidates if candidates is not None else (_valid_candidate(),)
     )
     selected_stats = stats or CollectionStats(
-        sites_total=69,
+        sites_total=88,
         sites_succeeded=55,
         total=120,
         candidates=len(selected_candidates),
@@ -70,7 +70,7 @@ def _document(
         workflow_run_url="https://github.com/acme/bal-gul/actions/runs/123",
         collector_commit_sha=COLLECTOR_SHA,
         candidates=selected_candidates,
-        failures=failures if failures is not None else _failures(14),
+        failures=failures if failures is not None else _failures(33),
         stats=selected_stats,
     )
 
@@ -95,10 +95,10 @@ def test_exact_prd_json_shape_and_alias_round_trip() -> None:
         "failures",
         "stats",
     )
-    assert '"갈등"' in encoded
-    assert '"기관"' in encoded
-    assert '"conflict_terms"' not in encoded
-    assert '"agency_terms"' not in encoded
+    assert '"청년"' in encoded
+    assert '"고충"' in encoded
+    assert '"youth_terms"' not in encoded
+    assert '"hardship_terms"' not in encoded
     assert "schema_version" not in encoded
 
 
@@ -136,18 +136,18 @@ def test_article_requires_aware_published_timestamp_and_method_literal() -> None
 
 def test_keyword_hits_require_both_nonempty_unique_groups() -> None:
     with pytest.raises(ValidationError, match="too_short"):
-        _ = CandidateKeywordHits.model_validate({"갈등": (), "기관": ("군청",)})
+        _ = CandidateKeywordHits.model_validate({"청년": (), "고충": ("주거난",)})
     with pytest.raises(ValidationError, match="unique"):
         _ = CandidateKeywordHits.model_validate(
-            {"갈등": ("반발", "반발"), "기관": ("군청",)},
+            {"청년": ("청년", "청년"), "고충": ("주거난",)},
         )
 
 
-def test_stats_require_exactly_69_sites_and_candidates_within_total() -> None:
-    with pytest.raises(ValidationError, match="69"):
+def test_stats_require_exactly_88_sites_and_candidates_within_total() -> None:
+    with pytest.raises(ValidationError, match="88"):
         _ = CollectionStats.model_validate_json(
             """{
-                "sites_total": 68,
+                "sites_total": 87,
                 "sites_succeeded": 55,
                 "total": 1,
                 "candidates": 1,
@@ -156,7 +156,7 @@ def test_stats_require_exactly_69_sites_and_candidates_within_total() -> None:
         )
     with pytest.raises(ValidationError, match="cannot exceed total"):
         _ = CollectionStats(
-            sites_total=69,
+            sites_total=88,
             sites_succeeded=55,
             total=1,
             candidates=2,
@@ -164,19 +164,19 @@ def test_stats_require_exactly_69_sites_and_candidates_within_total() -> None:
         )
     assert (
         CollectionStats(
-            sites_total=69,
+            sites_total=88,
             sites_succeeded=0,
             total=0,
             candidates=0,
-            engine_used=69,
+            engine_used=88,
         ).engine_used
-        == 69
+        == 88
     )
 
 
 def test_document_rejects_stats_candidate_count_mismatch() -> None:
     stats = CollectionStats(
-        sites_total=69,
+        sites_total=88,
         sites_succeeded=55,
         total=120,
         candidates=0,
@@ -188,15 +188,15 @@ def test_document_rejects_stats_candidate_count_mismatch() -> None:
 
 
 def test_document_requires_every_site_to_be_accounted_for() -> None:
-    with pytest.raises(ValidationError, match="account for 69 sites"):
-        _ = _document(failures=_failures(13))
+    with pytest.raises(ValidationError, match="account for 88 sites"):
+        _ = _document(failures=_failures(32))
 
 
 def test_document_rejects_duplicate_failure_names_and_candidate_links() -> None:
-    duplicate_failures = (*_failures(13), _failures(1)[0])
+    duplicate_failures = (*_failures(32), _failures(1)[0])
     candidate = _valid_candidate()
     duplicate_stats = CollectionStats(
-        sites_total=69,
+        sites_total=88,
         sites_succeeded=55,
         total=120,
         candidates=2,
@@ -256,14 +256,14 @@ def test_reader_rejects_filename_and_run_date_mismatch(tmp_path: Path) -> None:
 def test_collection_threshold_accepts_zero_candidates_at_55_but_not_54() -> None:
     zero_candidates = ()
     ready_stats = CollectionStats(
-        sites_total=69,
+        sites_total=88,
         sites_succeeded=55,
         total=0,
         candidates=0,
         engine_used=0,
     )
     low_stats = CollectionStats(
-        sites_total=69,
+        sites_total=88,
         sites_succeeded=54,
         total=0,
         candidates=0,
@@ -277,7 +277,7 @@ def test_collection_threshold_accepts_zero_candidates_at_55_but_not_54() -> None
     assert not _document(
         stats=low_stats,
         candidates=zero_candidates,
-        failures=_failures(15),
+        failures=_failures(34),
     ).meets_collection_threshold
 
 
@@ -293,7 +293,7 @@ def test_models_are_frozen_strict_and_forbid_extra_fields() -> None:
     with pytest.raises(ValidationError, match="int_type"):
         _ = CollectionStats.model_validate(
             {
-                "sites_total": 69,
+                "sites_total": 88,
                 "sites_succeeded": "55",
                 "total": 0,
                 "candidates": 0,

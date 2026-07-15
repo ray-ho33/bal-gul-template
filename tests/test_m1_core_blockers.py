@@ -35,7 +35,7 @@ SOURCES: Final = tuple(
         region="테스트권",
         homepage=f"https://site-{index}.example/",
     )
-    for index in range(69)
+    for index in range(88)
 )
 
 
@@ -88,7 +88,7 @@ def test_unexpected_site_exception_is_logged_bounded_and_isolated(
 
     # Then: the defect has a bounded public reason and a full diagnostic trace.
     assert fetcher.calls == [source.homepage for source in SOURCES]
-    assert document.stats.sites_succeeded == 68
+    assert document.stats.sites_succeeded == 87
     assert document.failures[0].name == crashed.name
     assert document.failures[0].stop_reason == "collector_exception:RuntimeError"
     assert "Traceback (most recent call last)" in caplog.text
@@ -138,7 +138,7 @@ def test_unexpected_per_site_aggregation_exception_is_also_isolated(
 
     # Then: later sources still run and the malformed site is accounted as failed.
     assert calls == [source.homepage for source in SOURCES]
-    assert document.stats.sites_succeeded == 68
+    assert document.stats.sites_succeeded == 87
     assert document.failures[0].stop_reason == "collector_exception:RuntimeError"
 
 

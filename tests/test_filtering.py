@@ -3,8 +3,8 @@ from datetime import UTC, date, datetime, timedelta, timezone
 
 import pytest
 from scraper.filtering import (
-    AGENCY_KEYWORDS,
-    CONFLICT_KEYWORDS,
+    HARDSHIP_KEYWORDS,
+    YOUTH_KEYWORDS,
     CurrentDayPublication,
     KeywordHits,
     find_keyword_hits,
@@ -17,90 +17,105 @@ KST = timezone(timedelta(hours=9))
 RUN_ANCHOR = datetime(2026, 7, 12, 6, tzinfo=KST)
 
 
-def test_keywords_are_exactly_the_binding_project_terms() -> None:
-    assert CONFLICT_KEYWORDS == (
-        "갈등",
-        "반발",
-        "반대",
-        "항의",
-        "규탄",
-        "시위",
-        "집회",
-        "소송",
-        "행정심판",
-        "철회",
-        "논란",
-        "마찰",
-        "충돌",
-        "진정",
-        "탄원",
-        "민원",
+def test_youth_and_hardship_keywords_are_the_binding_project_terms() -> None:
+    # Given
+    expected_youth_keywords = (
+        "청년",
+        "2030",
+        "20대",
+        "30대",
+        "20·30대",
+        "20~30대",
+        "20-30대",
+        "MZ세대",
+        "사회초년생",
+        "취업준비생",
+        "취준생",
+        "대학생",
     )
-    assert AGENCY_KEYWORDS == (
-        "시청",
-        "도청",
-        "군청",
-        "구청",
-        "시장",
-        "도지사",
-        "정부",
-        "부처",
-        "지자체",
-        "교육청",
-        "경찰",
-        "공사",
-        "공단",
-        "LH",
-        "국토부",
-        "환경부",
+    expected_hardship_keywords = (
+        "고충",
+        "어렵",
+        "힘들",
+        "곤란",
+        "부담",
+        "불안",
+        "위기",
+        "피해",
+        "차별",
+        "고립",
+        "은둔",
+        "빈곤",
+        "생활고",
+        "실업",
+        "취업난",
+        "구직난",
+        "주거난",
+        "전세사기",
+        "월세",
+        "학자금",
+        "부채",
+        "빚",
+        "저임금",
+        "임금체불",
+        "과로",
+        "해고",
+        "번아웃",
+        "소진",
+        "스트레스",
+        "우울",
+        "자살",
+        "포기",
+        "막막",
     )
 
-    hits = find_keyword_hits("LH 상대 소송과 반발", "교육청 앞 시위")
+    # When
+    hits = find_keyword_hits(
+        "2030 사회초년생 덮친 주거난",
+        "월세 부담으로 고립 위험까지 커졌다",
+    )
 
+    # Then
+    assert expected_youth_keywords == YOUTH_KEYWORDS
+    assert expected_hardship_keywords == HARDSHIP_KEYWORDS
     assert hits == KeywordHits(
-        conflict_terms=("반발", "시위", "소송"),
-        agency_terms=("교육청", "LH"),
+        youth_terms=("2030", "사회초년생"),
+        hardship_terms=("부담", "고립", "주거난", "월세"),
     )
     with pytest.raises(FrozenInstanceError):
-        delattr(hits, "conflict_terms")
+        delattr(hits, "youth_terms")
 
 
-def test_korean_place_agency_pattern_returns_tokens_without_obvious_noise() -> None:
-    hits = find_keyword_hits(
-        "춘천시가 철회를 요구받고 거제군은 반발에 직면",
-        "경기도청에도 민원이 접수됐다",
-    )
-
-    assert hits.agency_terms == ("도청", "춘천시", "거제군", "경기도")
-    assert find_keyword_hits("반드시 반대", "인지도 논란").agency_terms == ()
-    assert find_keyword_hits("신제품 출시 논란", "도시 재생 반대").agency_terms == ()
-
-
-def test_recent_articles_require_conflict_and_agency_hits() -> None:
+def test_recent_articles_require_youth_and_hardship_hits() -> None:
+    # Given
     published_at = RUN_ANCHOR - timedelta(hours=1)
 
+    # When / Then
     assert not is_candidate(
-        "주민 반발과 소송 예고",
-        "대책을 요구했다",
+        "월세 부담과 주거난 심화",
+        "지원 대책이 필요하다는 지적이다",
         published_at=published_at,
         run_anchor=RUN_ANCHOR,
     )
     assert not is_candidate(
-        "시청과 교육청의 공동 발표",
-        "새 계획을 공개했다",
+        "청년 창업 축제 성료",
+        "참가자들이 새 사업을 소개했다",
         published_at=published_at,
         run_anchor=RUN_ANCHOR,
     )
     assert is_candidate(
-        "주민들이 사업에 반발",
-        "시청에 재검토를 요구했다",
+        "20대 구직자 취업난 장기화",
+        "생활고까지 겹쳐 막막하다고 호소했다",
         published_at=published_at,
         run_anchor=RUN_ANCHOR,
     )
 
-    hits = find_keyword_hits("주민들이 사업에 반발", "시청에 재검토를 요구했다")
-    assert hits.conflict_terms == ("반발",)
-    assert hits.agency_terms == ("시청",)
+    hits = find_keyword_hits(
+        "20대 구직자 취업난 장기화",
+        "생활고까지 겹쳐 막막하다고 호소했다",
+    )
+    assert hits.youth_terms == ("20대",)
+    assert hits.hardship_terms == ("생활고", "취업난", "막막")
     assert hits.has_both_groups
 
 
@@ -126,14 +141,14 @@ def test_fresh_rfc_and_iso_timestamps_parse_as_aware_datetimes() -> None:
     assert iso_published_at.utcoffset() == timedelta(hours=9)
     assert rfc_published_at.utcoffset() == timedelta(hours=9)
     assert is_candidate(
-        "LH 사업에 주민 반발",
+        "청년층 전세사기 피해",
         "",
         published_at=iso_published_at,
         run_anchor=RUN_ANCHOR,
     )
     assert is_candidate(
-        "주민 시위",
-        "교육청에 대책 촉구",
+        "30대 직장인 번아웃",
+        "과로와 스트레스로 어려움을 겪는다",
         published_at=rfc_published_at,
         run_anchor=RUN_ANCHOR,
     )
@@ -151,13 +166,13 @@ def test_html_item_uses_explicit_current_day_publication() -> None:
     prior_day = CurrentDayPublication(date(2026, 7, 11))
 
     assert is_candidate(
-        "시청 계획에 상인 반발",
+        "청년층 월세 부담 커져",
         "",
         published_at=current_day,
         run_anchor=RUN_ANCHOR,
     )
     assert not is_candidate(
-        "시청 계획에 상인 반발",
+        "청년층 월세 부담 커져",
         "",
         published_at=prior_day,
         run_anchor=RUN_ANCHOR,

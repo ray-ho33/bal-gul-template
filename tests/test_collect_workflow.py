@@ -58,7 +58,7 @@ def test_kst_collection_cleanup_and_handoff_validation() -> None:
     assert "document.run_date.isoformat() != run_date" in workflow
     assert "document.workflow_run_url != expected_run_url" in workflow
     assert "document.collector_commit_sha != expected_sha" in workflow
-    assert "document.stats.sites_total != 69" in workflow
+    assert "document.stats.sites_total != 88" in workflow
     assert (
         'output.write(f"sites_succeeded={document.stats.sites_succeeded}\\n")'
         in workflow

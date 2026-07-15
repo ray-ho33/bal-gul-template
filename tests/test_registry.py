@@ -15,10 +15,10 @@ from scraper.registry import (
 REPO_ROOT = Path(__file__).resolve().parents[1]
 REGISTRY_MODULE = REPO_ROOT / "scraper" / "registry.py"
 REGISTRY_PATH = REPO_ROOT / "korean_regional_newspapers.json"
-SIX_EMPTY_REGIONS = b"""{
+SEVEN_EMPTY_GROUPS = b"""{
   "source": "registry fixture",
   "retrieved": "2026-07-11",
-  "regions": {"1": [], "2": [], "3": [], "4": [], "5": [], "6": []}
+  "regions": {"1": [], "2": [], "3": [], "4": [], "5": [], "6": [], "7": []}
 }"""
 ONE_EMPTY_REGION = b"""{
   "source": "registry fixture",
@@ -43,9 +43,9 @@ def test_real_registry_has_exact_source_and_region_counts() -> None:
     # When: its strict JSON boundary is loaded
     sources = load_registry(REGISTRY_PATH)
 
-    # Then: all 69 sources across all 6 parent regions are returned
-    assert len(sources) == 69
-    assert len({source.region for source in sources}) == 6
+    # Then: all 88 sources across all 7 parent groups are returned
+    assert len(sources) == 88
+    assert len({source.region for source in sources}) == 7
 
 
 def test_parent_region_is_injected_into_each_source() -> None:
@@ -89,7 +89,7 @@ def test_duplicate_sources_are_rejected(
     field: Literal["name", "homepage"],
     value: str,
 ) -> None:
-    # Given: a 69-entry registry with one duplicated identity field
+    # Given: an 88-entry registry with one duplicated identity field
     raw = _registry_text().replace(
         f'"{original}"',
         f'"{duplicate}"',
@@ -124,7 +124,7 @@ def test_non_http_homepage_is_rejected() -> None:
         ("강원일보", "   "),
         ("강원권", "   "),
         ("http://www.kwnews.co.kr/", "   "),
-        ("https://namu.wiki/w/지역 신문", "   "),
+        ("https://namu.wiki/w/신문/목록#s-2.1.1", "   "),
     ],
 )
 def test_blank_fields_are_rejected(original: str, blank: str) -> None:
@@ -159,7 +159,7 @@ def test_malformed_envelopes_are_rejected(raw: bytes) -> None:
     ("raw", "scope", "actual"),
     [
         (ONE_EMPTY_REGION, "regions", 1),
-        (SIX_EMPTY_REGIONS, "sources", 0),
+        (SEVEN_EMPTY_GROUPS, "sources", 0),
     ],
 )
 def test_wrong_registry_counts_are_rejected(
