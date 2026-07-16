@@ -92,8 +92,8 @@ jobs:
               raise SystemExit("candidate workflow_run_url does not identify this run")
           if document.collector_commit_sha != expected_sha:
               raise SystemExit("candidate collector_commit_sha does not identify checkout")
-          if document.stats.sites_total != 69:
-              raise SystemExit("candidate stats do not cover the 69-site registry")
+          if document.stats.sites_total != 88:
+              raise SystemExit("candidate stats do not cover the 88-site registry")
 
           with Path(os.environ["GITHUB_OUTPUT"]).open("a", encoding="utf-8") as output:
               output.write(f"sites_succeeded={document.stats.sites_succeeded}\n")

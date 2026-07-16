@@ -15,8 +15,8 @@ from pydantic import (
 )
 from pydantic_core import PydanticCustomError
 
-EXPECTED_REGION_COUNT: Final = 6
-EXPECTED_SOURCE_COUNT: Final = 69
+EXPECTED_REGION_COUNT: Final = 7
+EXPECTED_SOURCE_COUNT: Final = 88
 
 
 def _require_non_blank(value: str) -> str:

@@ -23,6 +23,7 @@ from typing_extensions import override
 from scraper.filtering import KeywordHits
 
 CollectionMethod: TypeAlias = Literal["requests", "engine"]
+CandidateContractVersion: TypeAlias = Literal["youth-hardship-v1"]
 NonBlankText: TypeAlias = Annotated[
     str,
     StringConstraints(min_length=1, pattern=r"\S"),
@@ -32,11 +33,12 @@ CommitSha: TypeAlias = Annotated[
     StringConstraints(pattern=r"^[0-9a-f]{40}$"),
 ]
 NonNegativeInt: TypeAlias = Annotated[int, Field(ge=0)]
-SiteCount: TypeAlias = Annotated[int, Field(ge=0, le=69)]
+SiteCount: TypeAlias = Annotated[int, Field(ge=0, le=88)]
 
 _KST: Final = timezone(timedelta(hours=9))
-_SITE_TOTAL: Final = 69
+_SITE_TOTAL: Final = 88
 _READINESS_THRESHOLD: Final = 55
+CANDIDATE_CONTRACT_VERSION: Final[CandidateContractVersion] = "youth-hardship-v1"
 
 
 def _schema_error(
@@ -69,7 +71,7 @@ HttpUrlString: TypeAlias = Annotated[str, AfterValidator(_require_http_url)]
 
 
 class CandidateKeywordHits(BaseModel):
-    """Matched conflict and agency terms with the PRD's Korean JSON keys."""
+    """Matched youth and hardship terms with Korean JSON keys."""
 
     model_config: ClassVar[ConfigDict] = ConfigDict(
         extra="forbid",
@@ -79,33 +81,33 @@ class CandidateKeywordHits(BaseModel):
         validate_by_name=True,
     )
 
-    conflict_terms: Annotated[tuple[NonBlankText, ...], Field(min_length=1)] = Field(
-        alias="갈등",
+    youth_terms: Annotated[tuple[NonBlankText, ...], Field(min_length=1)] = Field(
+        alias="청년",
     )
-    agency_terms: Annotated[tuple[NonBlankText, ...], Field(min_length=1)] = Field(
-        alias="기관",
+    hardship_terms: Annotated[tuple[NonBlankText, ...], Field(min_length=1)] = Field(
+        alias="고충",
     )
 
     @classmethod
     def from_keyword_hits(cls, hits: KeywordHits) -> Self:
         """Parse filtering results into the serialized handoff value."""
         return cls.model_validate(
-            {"갈등": hits.conflict_terms, "기관": hits.agency_terms},
+            {"청년": hits.youth_terms, "고충": hits.hardship_terms},
         )
 
     @model_validator(mode="after")
     def require_unique_terms(self) -> Self:
         """Reject repeated terms within either keyword group."""
-        if len(set(self.conflict_terms)) != len(self.conflict_terms):
+        if len(set(self.youth_terms)) != len(self.youth_terms):
             validation_error = _schema_error(
                 "duplicate_keyword",
-                "conflict keyword terms must be unique",
+                "youth keyword terms must be unique",
             )
             raise validation_error
-        if len(set(self.agency_terms)) != len(self.agency_terms):
+        if len(set(self.hardship_terms)) != len(self.hardship_terms):
             validation_error = _schema_error(
                 "duplicate_keyword",
-                "agency keyword terms must be unique",
+                "hardship keyword terms must be unique",
             )
             raise validation_error
         return self
@@ -144,7 +146,7 @@ class CollectionFailure(BaseModel):
 
 
 class CollectionStats(BaseModel):
-    """Aggregate counts for the 69-site collection run."""
+    """Aggregate counts for the 88-site collection run."""
 
     model_config: ClassVar[ConfigDict] = ConfigDict(
         extra="forbid",
@@ -152,7 +154,7 @@ class CollectionStats(BaseModel):
         strict=True,
     )
 
-    sites_total: Literal[69]
+    sites_total: Literal[88]
     sites_succeeded: SiteCount
     total: NonNegativeInt
     candidates: NonNegativeInt
@@ -179,6 +181,7 @@ class CandidateFile(BaseModel):
         strict=True,
     )
 
+    contract_version: CandidateContractVersion
     run_date: date
     generated_at: AwareDatetime
     workflow_run_url: HttpUrlString | None
@@ -210,7 +213,7 @@ class CandidateFile(BaseModel):
         if self.stats.sites_succeeded + len(self.failures) != _SITE_TOTAL:
             validation_error = _schema_error(
                 "site_accounting",
-                "succeeded sites and failures must account for 69 sites",
+                "succeeded sites and failures must account for 88 sites",
             )
             raise validation_error
         failure_names = tuple(failure.name for failure in self.failures)

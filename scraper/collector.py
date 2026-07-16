@@ -9,6 +9,7 @@ from scraper.fetching import SiteCollection, SiteCollectionError
 from scraper.filtering import CurrentDayPublication, find_keyword_hits, is_recent
 from scraper.registry import NewspaperSource
 from scraper.schema import (
+    CANDIDATE_CONTRACT_VERSION,
     ArticleCandidate,
     CandidateFile,
     CandidateKeywordHits,
@@ -17,7 +18,7 @@ from scraper.schema import (
 )
 
 _KST: Final = timezone(timedelta(hours=9))
-_SITE_TOTAL: Final = 69
+_SITE_TOTAL: Final = 88
 _EXCEPTION_TYPE_MAX: Final = 64
 _LOGGER: Final = logging.getLogger(__name__)
 
@@ -43,7 +44,7 @@ class CollectionProgress:
     """Bounded count-only progress safe for external observation."""
 
     sites_completed: int
-    sites_total: Literal[69]
+    sites_total: Literal[88]
     sites_succeeded: int
     sites_failed: int
     engine_used: int
@@ -196,6 +197,7 @@ def collect_candidates(
 
     generated_at = dependencies.generated_clock()
     return CandidateFile(
+        contract_version=CANDIDATE_CONTRACT_VERSION,
         run_date=request.run_date,
         generated_at=generated_at,
         workflow_run_url=request.workflow_run_url,

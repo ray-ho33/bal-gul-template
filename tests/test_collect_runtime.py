@@ -113,11 +113,11 @@ class _Harness:
         assert sources == (_SOURCE,)
         self.events.append("collect")
         self.request = request
-        failed = 69 - self.succeeded
+        failed = 88 - self.succeeded
         dependencies.observer(
             CollectionProgress(
-                sites_completed=69,
-                sites_total=69,
+                sites_completed=88,
+                sites_total=88,
                 sites_succeeded=self.succeeded,
                 sites_failed=failed,
                 engine_used=2,
@@ -125,6 +125,7 @@ class _Harness:
         )
         generated = dependencies.generated_clock()
         return CandidateFile(
+            contract_version="youth-hardship-v1",
             run_date=request.run_date,
             generated_at=generated,
             workflow_run_url=request.workflow_run_url,
@@ -135,7 +136,7 @@ class _Harness:
                 for index in range(failed)
             ),
             stats=CollectionStats(
-                sites_total=69,
+                sites_total=88,
                 sites_succeeded=self.succeeded,
                 total=0,
                 candidates=0,
@@ -170,9 +171,9 @@ def test_below_threshold_still_writes_complete_file_and_summary(tmp_path: Path) 
     assert "총 기사 수: 0" in summary
     assert "후보 수: 0" in summary
     assert "엔진 폴백 수: 2" in summary
-    assert "실패 사이트: 15" in summary
-    assert "출력 경로: data/candidates-2026-07-12.json" in summary
-    assert "69/69" in harness.stderr.getvalue()
+    assert "실패 사이트: 34" in summary
+    assert f"출력 경로: {Path('data/candidates-2026-07-12.json')}" in summary
+    assert "88/88" in harness.stderr.getvalue()
     assert "example.com" not in harness.stderr.getvalue()
 
 

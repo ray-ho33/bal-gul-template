@@ -1,7 +1,104 @@
 {
-  "source": "https://namu.wiki/w/지역 신문",
-  "retrieved": "2026-07-11",
+  "source": "https://namu.wiki/w/신문/목록#s-2.1.1",
+  "retrieved": "2026-07-15",
   "regions": {
+    "종합지": [
+      {
+        "name": "조선일보",
+        "homepage": "https://www.chosun.com/",
+        "namu_wiki": "https://namu.wiki/w/%EC%A1%B0%EC%84%A0%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "중앙일보",
+        "homepage": "https://www.joongang.co.kr/",
+        "namu_wiki": "https://namu.wiki/w/%EC%A4%91%EC%95%99%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "동아일보",
+        "homepage": "https://www.donga.com/",
+        "namu_wiki": "https://namu.wiki/w/%EB%8F%99%EC%95%84%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "한국일보",
+        "homepage": "https://www.hankookilbo.com/",
+        "namu_wiki": "https://namu.wiki/w/%ED%95%9C%EA%B5%AD%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "경향신문",
+        "homepage": "https://www.khan.co.kr/",
+        "namu_wiki": "https://namu.wiki/w/%EA%B2%BD%ED%96%A5%EC%8B%A0%EB%AC%B8"
+      },
+      {
+        "name": "국민일보",
+        "homepage": "https://www.kmib.co.kr/",
+        "namu_wiki": "https://namu.wiki/w/%EA%B5%AD%EB%AF%BC%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "문화일보",
+        "homepage": "https://www.munhwa.com/",
+        "namu_wiki": "https://namu.wiki/w/%EB%AC%B8%ED%99%94%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "서울신문",
+        "homepage": "https://www.seoul.co.kr/",
+        "namu_wiki": "https://namu.wiki/w/%EC%84%9C%EC%9A%B8%EC%8B%A0%EB%AC%B8"
+      },
+      {
+        "name": "세계일보",
+        "homepage": "https://www.segye.com/",
+        "namu_wiki": "https://namu.wiki/w/%EC%84%B8%EA%B3%84%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "한겨레",
+        "homepage": "https://www.hani.co.kr/",
+        "namu_wiki": "https://namu.wiki/w/%ED%95%9C%EA%B2%A8%EB%A0%88"
+      },
+      {
+        "name": "내일신문",
+        "homepage": "https://www.naeil.com/",
+        "namu_wiki": "https://namu.wiki/w/%EB%82%B4%EC%9D%BC%EC%8B%A0%EB%AC%B8"
+      },
+      {
+        "name": "신아일보",
+        "homepage": "https://www.shinailbo.co.kr/",
+        "namu_wiki": "https://namu.wiki/w/%EC%8B%A0%EC%95%84%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "아시아투데이",
+        "homepage": "https://www.asiatoday.co.kr/",
+        "namu_wiki": "https://namu.wiki/w/%EC%95%84%EC%8B%9C%EC%95%84%ED%88%AC%EB%8D%B0%EC%9D%B4"
+      },
+      {
+        "name": "전국매일신문",
+        "homepage": "https://jeonmae.co.kr/",
+        "namu_wiki": "https://namu.wiki/w/%EC%A0%84%EA%B5%AD%EB%A7%A4%EC%9D%BC%EC%8B%A0%EB%AC%B8"
+      },
+      {
+        "name": "천지일보",
+        "homepage": "https://www.newscj.com/",
+        "namu_wiki": "https://namu.wiki/w/%EC%B2%9C%EC%A7%80%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "일간투데이",
+        "homepage": "https://www.dtoday.co.kr/",
+        "namu_wiki": "https://namu.wiki/w/%EC%9D%BC%EA%B0%84%ED%88%AC%EB%8D%B0%EC%9D%B4"
+      },
+      {
+        "name": "매일일보",
+        "homepage": "https://www.m-i.kr/",
+        "namu_wiki": "https://namu.wiki/w/%EB%A7%A4%EC%9D%BC%EC%9D%BC%EB%B3%B4"
+      },
+      {
+        "name": "세계타임즈",
+        "homepage": "https://thesegye.com/",
+        "namu_wiki": "https://namu.wiki/w/%EC%84%B8%EA%B3%84%ED%83%80%EC%9E%84%EC%A6%88"
+      },
+      {
+        "name": "스카이데일리",
+        "homepage": "https://www.skyedaily.com/",
+        "namu_wiki": "https://namu.wiki/w/%EC%8A%A4%EC%B9%B4%EC%9D%B4%EB%8D%B0%EC%9D%BC%EB%A6%AC"
+      }
+    ],
     "강원권": [
       {
         "name": "강원일보",
